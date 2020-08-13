@@ -6,13 +6,13 @@
 3. 오지영
 4. 이예나
 
-사용 방법 : 브랜치를 나눠서 PR(Pull Request) 요청을 해주시기 바랍니다. 
+**사용 방법 : 브랜치를 나눠서 PR(Pull Request) 요청을 해주시기 바랍니다.**
 
-ex) 1. 이 레포지토리를 Fork 한다. 
-    2. git add suung 기존 자신이 정리한 내용들의 폴더를 추가 (폴더명은 자신의 이름 영문)
-    3. git checkout -b study/suung 브랜치 생성
-    4. 현재 자신의 브랜치로 들어온 후에 git merge master study/suung
-    5. 자신이 Fork를 뜬 레포지토리에서 이 레포지토리로 PR(Pull Request) 요청을 한다. 
+1. 이 레포지토리를 자신의 Github로 Fork 한다. 
+2. git add suung 기존 자신이 정리한 내용들의 폴더를 추가 (폴더명은 자신의 이름 영문)
+3. git checkout -b study/suung 브랜치 생성
+4. 현재 자신의 브랜치로 들어온 후에 git merge master study/suung
+5. 자신이 Fork를 뜬 레포지토리에서 이 레포지토리로 PR(Pull Request) 요청을 한다. 
  
  
 + 규칙 
