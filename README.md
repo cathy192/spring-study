@@ -9,11 +9,11 @@
 **사용 방법 : 브랜치를 나눠서 PR(Pull Request) 요청을 해주시기 바랍니다.**
 
 1. 이 레포지토리를 자신의 Github로 Fork 한다. 
-2. `git add suung` 기존 자신이 정리한 내용들의 폴더를 추가 한 후 복붙 (폴더명은 자신의 이름 영문)
-3. `git checkout -b study/suung` study/이름의 규칙을 가진 브랜치 생성
-4. `git merge master study/suung` 해당 브랜치를 master와 병합
-5. 자신이 Fork를 뜬 레포지토리에서 이 레포지토리로 PR(Pull Request) 요청을 한다. 
- 
+2. `git checkout -b study/suung` study/이름의 규칙을 가진 브랜치 생성
+3. `git add suung` 기존 자신이 정리한 내용들의 폴더를 추가 한 후 복붙 (폴더명은 자신의 이름 영문)
+4. `git commit -m '~~~'` 나눈 브랜치에서 comit 수행
+5. `git checkout master & git merge study/suung` 마스터 브랜치로 빠져나온 후 나눈 브랜치 병합 
+6. 자신이 Fork를 뜬 레포지토리에서 이 레포지토리로 PR(Pull Request) 요청을 한다. 
  
 + 규칙 
 1. Commit 메세지는 제목과 내용이 포함되도록 (제목과 본문은 한칸 띄어쓰기) 
