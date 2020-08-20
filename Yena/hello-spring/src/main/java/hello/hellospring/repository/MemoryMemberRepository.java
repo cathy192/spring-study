@@ -18,7 +18,7 @@ public class MemoryMemberRepository  implements  MemberRepository{
     }
 
     @Override
-    public Optional<Member> findbyId(Long id) {//store에서 꺼내기
+    public Optional<Member> findById(Long id) {//store에서 꺼내기
        // return store.get(id); //null이 반환될 수 있으니 optional로 감싸야함
         return Optional.ofNullable(store.get(id));
     }

@@ -15,12 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @Transactional
 public class MemberServiceIntegrationTest {
     @Autowired MemberService memberService;
-    @Autowired MemberRepository memberRepository;
+  //  @Autowired MemberRepository memberRepository;
+
     @Test
-    public void 회원가입() throws Exception {
+    public void 회원가입()  {
         //given 주어졌을 때
         Member member = new Member();
-        member.setName("spring3");
+        member.setName("spring8");
 
         //when 이러한 상황에
         Long saveId = memberService.join(member);

@@ -24,7 +24,7 @@ class MemoryMemberRepositoryTest {
         member.setName("spring");
         repository.save(member);//리퍼지터리에 저장
 
-        Member result = repository.findbyId(member.getId()).get();//리퍼지터리에 id를 가져오는지 확인
+        Member result = repository.findById(member.getId()).get();//리퍼지터리에 id를 가져오는지 확인
         //optional에서 값을 꺼낼 땐 get으로 꺼낼 수 있음.
         //메모리에서 꺼낸것과 저장한 것이 같으면 참
        // System.out.println("result = "+(result=member)); 이렇게 작성할 수 있으나 콘솔로 계속 확인해야함
