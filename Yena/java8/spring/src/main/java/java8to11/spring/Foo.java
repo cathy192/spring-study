@@ -32,6 +32,6 @@ public class Foo {
         System.out.println(i+basenumber);
         };
         privsteInt.accept(10);
-        basenumber++;//effective final이 아니라서 에러남
+        //basenumber++;//effective final이 아니라서 에러남
     }
 }
