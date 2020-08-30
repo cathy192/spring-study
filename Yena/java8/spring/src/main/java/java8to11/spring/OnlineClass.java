@@ -28,6 +28,7 @@ public class OnlineClass {
         this.progress = progress;
     }
 
+
     public Integer getId() {
         return id;
     }

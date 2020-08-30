@@ -10,23 +10,33 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class App  {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException {
 
         List<OnlineClass> springClass = new ArrayList<>();
         springClass.add(new OnlineClass(1,"spring boot", true));
-        springClass.add(new OnlineClass(2,"spring data jpa", true));
-        springClass.add(new OnlineClass(3,"spring mvc", false));
-        springClass.add(new OnlineClass(4,"spring core", false));
+
         springClass.add(new OnlineClass(5,"rest api develoment", false));
 
-        OnlineClass spring_boot=new OnlineClass(1,"spring boot",false);
-       //레퍼레이션은 null이 기본값이므로 오류남
-        //Duration studyDuration = spring_boot.getProgress().getStudyDuration();
-        //에러가 나기 좋은 코드임 유의
-        Optional<Progress> progress = spring_boot.getProgress();
-        if (progress != null)
-        System.out.println(progress.getStudyDuration());
+        Optional<OnlineClass> spring = springClass.stream()
+                .filter(pc -> pc.getTitle().startsWith("spring"))
+                .findFirst();
+        //있으면 꺼내겠다. NULL 체크 안해도 됨
 
+        spring.ifPresent(oc -> System.out.println(oc.getTitle()));
+        //없으면에러 던짐
+        OnlineClass onlineClass1 =  spring.orElseThrow(IllegalAccessException::new);
+        System.out.println(onlineClass1.getTitle());
+        //없으면 새로운 class를 만들겠다.
+        OnlineClass onlineClass =  spring.orElseGet(App::creatNewClass);
+
+        Optional<OnlineClass> onlineClass2 = spring.
+                filter(oc -> oc.isClosed());
 
     }
+
+    private static OnlineClass creatNewClass() {
+        System.out.println("creat new class");
+        return new OnlineClass(10,"new class",false);
+    }
+
 }
