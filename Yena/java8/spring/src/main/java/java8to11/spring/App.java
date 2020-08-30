@@ -16,26 +16,24 @@ import java.util.stream.Stream;
 
 public class App  {
     public static void main(String[] args) throws IllegalAccessException, InterruptedException {
-        Date date = new Date();
-        Instant instant = date.toInstant();
-        Date newDAte =Date.from(instant);
-        GregorianCalendar gregorianCalendar = new GregorianCalendar();
-        ZonedDateTime dateTime1 = gregorianCalendar.toInstant()
-                .atZone(ZoneId.systemDefault());//인스턴스만 있으면 다 바꿀수있음
-        //gragorian
-        GregorianCalendar from = GregorianCalendar.from(dateTime1);
-        LocalDateTime dateTime = LocalDateTime.now();
-        dateTime.plus(10, ChronoUnit.DAYS);//기존 인스턴스 변경 안함
-        System.out.println(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        ZoneId zoneId = TimeZone.getTimeZone("PST").toZoneId();//예전에서 최근
-        TimeZone.getTimeZone(zoneId); //최근에서 예전
-        //내가 원하는 데로 포메팅
-        DateTimeFormatter mmddyyy =DateTimeFormatter.ofPattern("MM/dd/yyy");
-        System.out.println(dateTime.format(mmddyyy));
-        //파싱
-        LocalDate parse =LocalDate.parse("07/15/1982",mmddyyy);
-        System.out.println(parse);
-    }
+        Thread thread =new Thread(() -> {
 
+                System.out.println("Thread" + Thread.currentThread().getName());
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    throw new IllegalStateException(e);
+                    //  System.out.println("exit");
+                    //return;//void라서 리턴 없음. 종료
+                }
+
+        });
+        thread.start();
+        System.out.println("Hello"+Thread.currentThread().getName());
+        thread.join();//위에 쓰레드 끝날때 기다려줌
+        System.out.println(thread+"is finished");
+
+
+    }
 
 }
