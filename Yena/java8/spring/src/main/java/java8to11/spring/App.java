@@ -17,20 +17,16 @@ import java.util.stream.Stream;
 
 public class App  {
     public static void main(String[] args) throws IllegalAccessException, InterruptedException, ExecutionException {
-        ExecutorService executorService = Executors.newSingleThreadExecutor();
-
-        Callable<String> hello= () ->{
-             Thread.sleep(200L);
-            return "hello";
-        };
-        Future<String> helloFuture = executorService.submit(hello);
-        System.out.println(helloFuture.isDone());//끝났으면 true
-        System.out.println("started");//get 이전까지 그냥 실행됨
-        helloFuture.cancel(false);//최소되어 사라짐
-        helloFuture.get();//get을 만나는 순간 멈춰서 기다림. 결과 나올 때까지. 블로킹
-
-        System.out.println(helloFuture.isDone());
-        System.out.println("ENd");
+    ExecutorService executorService= Executors.newFixedThreadPool(5);
+    CompletableFuture<Void> future = CompletableFuture.supplyAsync(() -> {
+        System.out.println("Hello" + Thread.currentThread().getName());
+        return "Hello";
+    }, executorService).thenRunAsync(() -> {
+        System.out.println(Thread.currentThread().getName());
+    },executorService);
+        future.get();
         executorService.shutdown();
-        }
+    }
+
+
 }
