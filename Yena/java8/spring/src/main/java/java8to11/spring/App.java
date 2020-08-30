@@ -16,20 +16,21 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class App  {
-    public static void main(String[] args) throws IllegalAccessException, InterruptedException {
+    public static void main(String[] args) throws IllegalAccessException, InterruptedException, ExecutionException {
         ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.submit( () ->{
-            System.out.println("Tread"+ Thread.currentThread().getName());
-        });//다음작업 들어올떄까지 프로세서가 대기하기에 shutdown으로 꺼줘야함
-        executorService.shutdown();//현재 진행하는 작업을 마치고 shutdown
-       // executorService.shutdownNow()//바로 다 죽임
-        ScheduledExecutorService executorService2 = Executors.newSingleThreadScheduledExecutor();
-        executorService2.schedule(getRunnable("hello"),3, TimeUnit.SECONDS);
 
-    }
+        Callable<String> hello= () ->{
+             Thread.sleep(200L);
+            return "hello";
+        };
+        Future<String> helloFuture = executorService.submit(hello);
+        System.out.println(helloFuture.isDone());//끝났으면 true
+        System.out.println("started");//get 이전까지 그냥 실행됨
+        helloFuture.cancel(false);//최소되어 사라짐
+        helloFuture.get();//get을 만나는 순간 멈춰서 기다림. 결과 나올 때까지. 블로킹
 
-    private static Runnable getRunnable(String hello) {
-        return () -> System.out.println(hello + Thread.currentThread().getName());
-    }
-
+        System.out.println(helloFuture.isDone());
+        System.out.println("ENd");
+        executorService.shutdown();
+        }
 }
